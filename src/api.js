@@ -1,30 +1,103 @@
 import axios from 'axios';
 
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
-const KEY = "98478fc7eb75aa7e8b4a496875cf4e46"; 
+const KEY = '98478fc7eb75aa7e8b4a496875cf4e46';
 
+const AuthorizationKey =
+  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ODQ3OGZjN2ViNzVhYTdlOGI0YTQ5Njg3NWNmNGU0NiIsInN1YiI6IjY1MDRiNjU1NTllOGE5MDEwMTFiMmQ3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DeXNosrDK8O0v1ri8NLTbPCat6uJWvGWooZqt7Emta8';
 
 export const trendingMovies = async () => {
-    const response = await axios.get('/trending/all');
+  try {
+    const response = await axios.get('/trending/movie/day', {
+      headers: {
+        accept: 'application/json',
+        Authorization: AuthorizationKey,
+      },
+      params: {
+        key: KEY,
+      },
+    });
+
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const movieDetails = async movie_id => {
+  try {
+    const response = await axios.get(`movie/${movie_id}?language=en-US`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: AuthorizationKey,
+      },
+      params: {
+        key: KEY,
+      },
+    });
     return response.data;
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+export const movieCredits = async movie_id => {
+  try {
+    const response = await axios.get(
+      `/movie/${movie_id}/credits?language=en-US`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization: AuthorizationKey,
+        },
+        params: {
+          key: KEY,
+        },
+      }
+    );
+    return response.data.cast;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-  export const movieDetails = async (movie_id) => {
-    const response = await axios.get(`movie/${movie_id}`);
-    return response.data;
-  };
+export const movieReviews = async movie_id => {
+  try {
+    const response = await axios.get(
+      `/movie/${movie_id}/reviews?language=en-US&page=1`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization: AuthorizationKey,
+        },
+        params: {
+          key: KEY,
+        },
+      }
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-
-  export const movieCredits = async (movie_id) => {
-    const response = await axios.get(`movie/${movie_id}/credits`);
-    return response.data;
-  };
-
-
-  export const movieReviews = async (movie_id) => {
-    const response = await axios.get(`movie/${movie_id}/reviews`);
-    return response.data;
-  };
+export const fetchByQuery = async query => {
+  try {
+    const response = await axios.get(
+      `search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+      {
+        headers: {
+          accept: 'application/json',
+          Authorization: AuthorizationKey,
+        },
+        params: {
+          key: KEY,
+        },
+      }
+    );
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
