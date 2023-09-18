@@ -1,8 +1,14 @@
+import {
+  SearchFormStyled,
+  SearchInputStyled,
+  SearchButtonStyled,
+} from 'components/SearchBar/SearchBar.styled';
+
 const SearchBar = ({ handleInputChange, handleSubmit, query }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <SearchFormStyled onSubmit={handleSubmit}>
       <label>
-        <input
+        <SearchInputStyled
           type="text"
           autoComplete="off"
           name="search"
@@ -10,8 +16,8 @@ const SearchBar = ({ handleInputChange, handleSubmit, query }) => {
           onChange={handleInputChange}
         />
       </label>
-      <button type="submit">Search</button>
-    </form>
+      <SearchButtonStyled type="submit">Search</SearchButtonStyled>
+    </SearchFormStyled>
   );
 };
 

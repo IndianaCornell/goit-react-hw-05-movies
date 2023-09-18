@@ -1,10 +1,9 @@
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { GlobalStyle } from './GlobalStyles';
-import { Layout } from './Layout';
-
 import { SharedLayout } from './SharedLayout';
+
+import { Layout } from './Layout';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,7 +29,6 @@ export const App = () => {
         </Route>
       </Routes>
       <ToastContainer />
-      <GlobalStyle />
     </Layout>
   );
 };

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { fetchByQuery } from 'api';
 import { useSearchParams } from 'react-router-dom';
-
 import { toast } from 'react-toastify';
 
 import SearchBar from 'components/SearchBar/SearchBar';
-
 import MovieList from 'components/MovieList/MovieList';
+
+import { SearchBox } from 'components/SearchBar/SearchBar.styled';
 
 const Movies = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -50,14 +50,14 @@ const Movies = () => {
   };
 
   return (
-    <>
+    <SearchBox>
       <SearchBar
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
         query={query}
       />
       {requestDone ? <MovieList movies={searchResult} /> : ''}
-    </>
+    </SearchBox>
   );
 };
 

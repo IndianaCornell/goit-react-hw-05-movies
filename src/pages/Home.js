@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { trendingMovies } from 'api';
 import MovieList from '../components/MovieList/MovieList';
 
+import { HomeTrendsTite } from './Home.styled';
+
 const Home = () => {
   const [movieList, setMovieList] = useState([]);
 
@@ -22,7 +24,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Trending movies</h1>
+      <HomeTrendsTite>Trending movies</HomeTrendsTite>
       <MovieList movies={movieList} />
     </>
   );

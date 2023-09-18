@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 
+import { MovieListStyled } from './MovieList.styled';
+
 const MovieList = ({ movies }) => {
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
   const location = useLocation();
 
   return (
-    <ul>
+    <MovieListStyled>
       {movies.map(movie => {
         return (
           <li key={movie.id}>
@@ -19,7 +21,7 @@ const MovieList = ({ movies }) => {
           </li>
         );
       })}
-    </ul>
+    </MovieListStyled>
   );
 };
 
