@@ -3,18 +3,22 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
+import MovieCard from 'components/MovieCard/MovieCard';
 
 const MovieDetails = () => {
   const [movieDesc, setMovieDesc] = useState([]);
-  const { movieId } = useParams();
+  const [requestDone, setRequestDone] = useState(false);
 
-  const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
+  const { movieId } = useParams();
 
   useEffect(() => {
     const result = async () => {
       try {
         const movie = await movieDetails(movieId);
         setMovieDesc(movie);
+        if (movie) {
+          setRequestDone(true);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -22,21 +26,9 @@ const MovieDetails = () => {
     result();
   }, [movieId]);
 
-  const { poster_path, original_title, popularity, overview, genres } =
-    movieDesc;
-
   return (
     <>
-      <>
-        <img
-          src={imgBaseUrl + poster_path}
-          alt={movieDesc.original_title}
-        ></img>
-        <h2>{original_title}</h2>
-        <p>User score: {popularity.toFixed(1)}%</p>
-        <h3>Overview</h3>
-        <p>{overview}</p>
-      </>
+      {requestDone ? <MovieCard desc={movieDesc} /> : 'loading'}
       <AdditionalInfo />
     </>
   );

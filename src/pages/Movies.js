@@ -1,8 +1,24 @@
-import { Link } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 
-const Movies = () => { 
-    return ( <Link to="movieId">film - 1</Link>)
-}
+const Movies = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchPar = searchParams.get('search');
 
+  return (
+    <>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          setSearchParams({ search: e.target.elements.search.value });
+        }}
+      >
+        <label>
+          <input type="text" autoComplete="off" name="search" />
+        </label>
+        <button type="submit">Search </button>
+      </form>
+    </>
+  );
+};
 
-export default Movies; 
+export default Movies;
