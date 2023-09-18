@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
-import MovieCard from 'components/MovieCard/MovieCard';
+import MovieDesc from 'components/MovieDesc/MovieDesc';
 
 const MovieDetails = () => {
   const [movieDesc, setMovieDesc] = useState([]);
@@ -28,7 +28,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      {requestDone ? <MovieCard desc={movieDesc} /> : 'loading'}
+      {requestDone ? <MovieDesc desc={movieDesc} /> : 'loading'}
       <AdditionalInfo />
     </>
   );

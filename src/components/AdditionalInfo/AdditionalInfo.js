@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 const AdditionalInfo = () => {
   return (
@@ -6,7 +7,9 @@ const AdditionalInfo = () => {
       <h4>Additional information</h4>
       <Link to="cast">Cast</Link>
       <Link to="reviews">Reviews</Link>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

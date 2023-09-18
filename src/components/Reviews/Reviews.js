@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 const Reviews = () => {
   const [review, setReview] = useState([]);
+
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Reviews = () => {
           </>
         ))
       ) : (
-        <p>We dont have any reviews for this moive.</p>
+        <p>We dont have any reviews for this movie.</p>
       )}
     </>
   );
