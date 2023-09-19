@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { SharedLayout } from './SharedLayout';
@@ -8,7 +7,11 @@ import { Layout } from './Layout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Home = lazy(() => import('../pages/Home'));
+import Home from '../pages/Home';
+
+import { lazy } from 'react';
+
+// const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));

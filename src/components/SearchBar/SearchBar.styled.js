@@ -8,6 +8,7 @@ export const SearchFormStyled = styled.form`
 
 export const SearchInputStyled = styled.input`
   height: 40px;
+  margin-left: 10px;
   flex-grow: 1;
   font-size: 18px;
   padding-left: 15px;

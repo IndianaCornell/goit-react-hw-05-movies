@@ -23,6 +23,13 @@ const Movies = () => {
           return;
         }
         const filmList = await fetchByQuery(searchQuery);
+
+        if (filmList.length === 0) {
+          setSearchResult([]);
+          toast.error('Sorry, there are no films for your request.');
+          return;
+        }
+
         setSearchResult(filmList);
 
         if (filmList) {

@@ -2,6 +2,8 @@ import { movieCredits } from 'api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { CastList } from './Cast.styled';
+
 const Cast = () => {
   const [credits, setCredits] = useState([]);
 
@@ -24,7 +26,7 @@ const Cast = () => {
   return (
     <>
       {credits.length ? (
-        <>
+        <CastList>
           {credits.slice(0, 10).map(actor => {
             return (
               <div key={actor.id}>
@@ -36,7 +38,7 @@ const Cast = () => {
               </div>
             );
           })}
-        </>
+        </CastList>
       ) : (
         <p>We dont have any information about cast in this movie.</p>
       )}

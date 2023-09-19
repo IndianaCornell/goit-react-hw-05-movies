@@ -1,4 +1,14 @@
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
+import {
+  GoBackBtn,
+  MovieBoxStyled,
+  MovieDescStyled,
+  MovieName,
+  PosterStyled,
+  MovieDescP,
+  MovieTit,
+} from './MovieDesc.styled';
 
 const MovieDesc = ({ desc }) => {
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
@@ -8,20 +18,27 @@ const MovieDesc = ({ desc }) => {
   const backLinkHref = location.state?.from ?? '/products';
 
   return (
-    <>
-      <Link to={backLinkHref}>Go Back</Link>
-      <img src={imgBaseUrl + poster_path} alt={original_title}></img>
-      <h2>{original_title}</h2>
-      <p>User score: {vote_average.toFixed(0)}%</p>
-      <h3>Overview</h3>
-      <p>{overview}</p>
-      <h3>Genres</h3>
-      <>
-        {genres.map(genre => {
-          return genre.name;
-        })}
-      </>
-    </>
+    <MovieDescStyled>
+      <GoBackBtn to={backLinkHref}>Go Back</GoBackBtn>
+      <MovieBoxStyled>
+        <PosterStyled
+          src={imgBaseUrl + poster_path}
+          alt={original_title}
+        ></PosterStyled>
+        <div>
+          <MovieName>{original_title}</MovieName>
+          <MovieDescP>User score: {vote_average.toFixed(0)}%</MovieDescP>
+          <MovieTit>Overview</MovieTit>
+          <MovieDescP>{overview}</MovieDescP>
+          <MovieTit>Genres:</MovieTit>
+          <div>
+            {genres.map(genre => {
+              return <MovieDescP>{genre.name}</MovieDescP>;
+            })}
+          </div>
+        </div>
+      </MovieBoxStyled>
+    </MovieDescStyled>
   );
 };
 
