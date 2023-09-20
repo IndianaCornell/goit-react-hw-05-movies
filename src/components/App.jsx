@@ -1,17 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import { SharedLayout } from './SharedLayout';
 
 import { Layout } from './Layout';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-import Home from '../pages/Home';
-
-import { lazy } from 'react';
-
-// const Home = lazy(() => import('../pages/Home'));
+const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
@@ -28,7 +25,7 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
       <ToastContainer />

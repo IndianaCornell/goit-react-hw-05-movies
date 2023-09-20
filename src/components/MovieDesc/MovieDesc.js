@@ -15,7 +15,7 @@ const MovieDesc = ({ desc }) => {
   const { poster_path, original_title, vote_average, overview, genres } = desc;
 
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/products';
+  const backLinkHref = location.state?.from ?? '/';
 
   return (
     <MovieDescStyled>
